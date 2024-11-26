@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\gpio.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\gpio.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6220000: Last Updated: Sun Nov  3 20:01:55 2024
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060061: Last Updated: Tue Nov 05 12:01:14 2024
 <BR><P>
 <H3>Maximum Stack Usage =          0 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -12,18 +12,18 @@ Call chain for Maximum Stack Depth:</H3>
 <H3>
 Functions with no stack information
 </H3><UL>
- <LI><a href="#[0]">Reset_Handler</a>
- <LI><a href="#[6e]">GPIO_Init</a>
- <LI><a href="#[6f]">Enable7SegLeft</a>
- <LI><a href="#[71]">Enable7SegRight</a>
- <LI><a href="#[72]">EnableLEDs</a>
- <LI><a href="#[74]">GetPushBtnsState</a>
- <LI><a href="#[73]">DisableAllLEDs</a>
- <LI><a href="#[6b]">Start</a>
- <LI><a href="#[6c]">PLL_Init</a>
- <LI><a href="#[6d]">SysTick_Init</a>
- <LI><a href="#[70]">SysTick_Wait1ms</a>
- <LI><a href="#[75]">SysTick_Wait1us</a>
+ <LI><a href="#[6b]">Reset_Handler</a>
+ <LI><a href="#[6f]">GPIO_Init</a>
+ <LI><a href="#[71]">Enable7SegLeft</a>
+ <LI><a href="#[73]">Enable7SegRight</a>
+ <LI><a href="#[74]">EnableLEDs</a>
+ <LI><a href="#[70]">GetPushBtnsState</a>
+ <LI><a href="#[75]">DisableAllLEDs</a>
+ <LI><a href="#[6c]">Start</a>
+ <LI><a href="#[6d]">PLL_Init</a>
+ <LI><a href="#[6e]">SysTick_Init</a>
+ <LI><a href="#[72]">SysTick_Wait1ms</a>
+ <LI><a href="#[76]">SysTick_Wait1us</a>
 </UL>
 </UL>
 <P>
@@ -113,7 +113,7 @@ Function Pointers
  <LI><a href="#[35]">PWM0Generator3_Handler</a> from startup.o(RESET) referenced from startup.o(RESET)
  <LI><a href="#[8]">PendSV_Handler</a> from startup.o(RESET) referenced from startup.o(RESET)
  <LI><a href="#[17]">Quadrature0_Handler</a> from startup.o(RESET) referenced from startup.o(RESET)
- <LI><a href="#[0]">Reset_Handler</a> from startup.o(RESET) referenced from startup.o(RESET)
+ <LI><a href="#[6b]">Reset_Handler</a> from startup.o(RESET) referenced from startup.o(RESET)
  <LI><a href="#[11]">SSI0_Handler</a> from startup.o(RESET) referenced from startup.o(RESET)
  <LI><a href="#[2c]">SSI1_Handler</a> from startup.o(RESET) referenced from startup.o(RESET)
  <LI><a href="#[40]">SSI2_Handler</a> from startup.o(RESET) referenced from startup.o(RESET)
@@ -156,11 +156,10 @@ Function Pointers
 <H3>
 Global Symbols
 </H3>
-<P><STRONG><a name="[0]"></a>Reset_Handler</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, startup.o(RESET))
-<BR><BR>[Calls]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
+<P><STRONG><a name="[6b]"></a>Reset_Handler</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, startup.o(RESET))
+<BR><BR>[Calls]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
 </UL>
-<BR>[Address Reference Count : 1]<UL><LI> startup.o(RESET)
-</UL>
+
 <P><STRONG><a name="[1]"></a>NMI_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, startup.o(RESET))
 <BR><BR>[Calls]<UL><LI><a href="#[1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NMI_Handler
 </UL>
@@ -519,54 +518,57 @@ Global Symbols
 <P><STRONG><a name="[36]"></a>uDMA_Handler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup.o(RESET))
 <BR>[Address Reference Count : 1]<UL><LI> startup.o(RESET)
 </UL>
-<P><STRONG><a name="[6e]"></a>GPIO_Init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, gpio.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
+<P><STRONG><a name="[6f]"></a>GPIO_Init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, gpio.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
 </UL>
 
-<P><STRONG><a name="[6f]"></a>Enable7SegLeft</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, gpio.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
+<P><STRONG><a name="[71]"></a>Enable7SegLeft</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, gpio.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
 </UL>
 
-<P><STRONG><a name="[71]"></a>Enable7SegRight</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, gpio.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
+<P><STRONG><a name="[73]"></a>Enable7SegRight</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, gpio.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
 </UL>
 
-<P><STRONG><a name="[72]"></a>EnableLEDs</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, gpio.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
+<P><STRONG><a name="[74]"></a>EnableLEDs</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, gpio.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
 </UL>
 
-<P><STRONG><a name="[74]"></a>GetPushBtnsState</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, gpio.o(.text), UNUSED)
-
-<P><STRONG><a name="[73]"></a>DisableAllLEDs</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, gpio.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
+<P><STRONG><a name="[70]"></a>GetPushBtnsState</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, gpio.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
 </UL>
 
-<P><STRONG><a name="[6b]"></a>Start</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, main.o(.text))
-<BR><BR>[Calls]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Init
-<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PLL_Init
-<LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Wait1ms
-<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DisableAllLEDs
-<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnableLEDs
-<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Enable7SegRight
-<LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Enable7SegLeft
-<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
-</UL>
-<BR>[Called By]<UL><LI><a href="#[0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Reset_Handler
+<P><STRONG><a name="[75]"></a>DisableAllLEDs</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, gpio.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
 </UL>
 
-<P><STRONG><a name="[6c]"></a>PLL_Init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, utils.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
+<P><STRONG><a name="[6c]"></a>Start</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, main.o(.text))
+<BR><BR>[Calls]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Init
+<LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PLL_Init
+<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Wait1ms
+<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DisableAllLEDs
+<LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetPushBtnsState
+<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnableLEDs
+<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Enable7SegRight
+<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Enable7SegLeft
+<LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
+</UL>
+<BR>[Called By]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Reset_Handler
 </UL>
 
-<P><STRONG><a name="[6d]"></a>SysTick_Init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, utils.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
+<P><STRONG><a name="[6d]"></a>PLL_Init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, utils.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
 </UL>
 
-<P><STRONG><a name="[70]"></a>SysTick_Wait1ms</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, utils.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
+<P><STRONG><a name="[6e]"></a>SysTick_Init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, utils.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
 </UL>
 
-<P><STRONG><a name="[75]"></a>SysTick_Wait1us</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, utils.o(.text), UNUSED)
+<P><STRONG><a name="[72]"></a>SysTick_Wait1ms</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, utils.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
+</UL>
+
+<P><STRONG><a name="[76]"></a>SysTick_Wait1us</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, utils.o(.text), UNUSED)
 <P>
 <H3>
 Local Symbols

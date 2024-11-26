@@ -20,7 +20,10 @@
 ;<var>	SPACE <tam>                        ; Declara uma variável de nome <var>
                                            ; de <tam> bytes a partir da primeira 
                                            ; posição da RAM		
-offset    SPACE 0x400
+count	  SPACE 0x8
+step	  SPACE 0x4
+count_dir SPACE 0x1	
+	
 ; -------------------------------------------------------------------------------
 ; Área de Código - Tudo abaixo da diretiva a seguir será armazenado na memória de 
 ;                  código
@@ -50,159 +53,87 @@ Start
 	BL PLL_Init                  ;Chama a subrotina para alterar o clock do microcontrolador para 80MHz
 	BL SysTick_Init
 	BL GPIO_Init                 ;Chama a subrotina que inicializa os GPIO
+	BL InitializeVars 
 	
 MainLoop
 	
-;	BL GetPushBtnsState
-;	MOV R1, R0
-;	CMP R0, #2_01
-;	IT 
-;		
-;	CMP R1, #2_10
-;	IT 
-;	
+	BL GetPushBtnsState
+	CMP R12,R0
+	IT EQ
+		BEQ Branch
+	MOV R12, R0
+	LDR R1, =step 
+	LDR R2,[R1]
+	CMP R0, #2_01
+	IT EQ
+		ADDEQ R2, R2, #1
+	CMP R2, #9
+	IT EQ
+		MOVEQ R2,#1
+	STRB R2,[R1]	
+		  
+	LDR R1, =count_dir 
+	LDR R2,[R1]	
+	CMP R0, #2_10
+	IT EQ
+		EOREQ R2,R2,#1
+	STRB R2,[R1]	
 	
-	MOV R0,#0
+Branch
+
+	LDR R1, =count
+	LDR R4, [R1]
+	LDR R2, =step
+	LDR R5, [R2]
+	LDR R3, =count_dir
+	LDR R6, [R3]
+	
+	CMP R6,#1
+	ITE EQ
+		ADDEQ R4,R4,R5
+		SUBNE R4,R4,R5
+	
+	MOV R0, #99
+	CMP R4, R0
+	IT GE
+		SUBGE R4, R4,R0
+		
+	
+	MOV R0, #0
+	CMP R4, R0
+	MOV R0, #99
+	IT LT
+		ADDLT R4, R4, R0	
+		
+	STRB R4,[R1]
+				
+	
+	MOV R5,#10
+	UDIV R3, R4, R5
+	
+		
+	MOV R0,R3
 	BL Enable7SegLeft
 	BL SysTick_Wait1ms
-	MOV R0,#0
-	BL Enable7SegRight
-	BL SysTick_Wait1ms
-	MOV R0,#0
-	BL EnableLEDs
-	BL SysTick_Wait1ms
-	BL DisableAllLEDs
-	
 	BL wait_200ms
 	
-	MOV R0,#1
-	BL Enable7SegLeft
-	BL SysTick_Wait1ms
-	MOV R0,#1
+	
+	MLS R0, R3, R5, R4
+	
 	BL Enable7SegRight
 	BL SysTick_Wait1ms
-	MOV R0,#1
-	BL EnableLEDs
-	BL SysTick_Wait1ms
-	BL DisableAllLEDs
-	
 	BL wait_200ms
 	
-	MOV R0,#2
-	BL Enable7SegLeft
-	BL SysTick_Wait1ms
-	MOV R0,#2
-	BL Enable7SegRight
-	BL SysTick_Wait1ms
-	MOV R0,#2
+	
+	MOV R0,R4
 	BL EnableLEDs
 	BL SysTick_Wait1ms
-	BL DisableAllLEDs
-	
 	BL wait_200ms
-	
-	MOV R0,#3
-	BL Enable7SegLeft
-	BL SysTick_Wait1ms
-	MOV R0,#3
-	BL Enable7SegRight
-	BL SysTick_Wait1ms
-	MOV R0,#3
-	BL EnableLEDs
-	BL SysTick_Wait1ms
 	BL DisableAllLEDs
 	
-	BL wait_200ms
+
 	
-	MOV R0,#4
-	BL Enable7SegLeft
-	BL SysTick_Wait1ms
-	MOV R0,#4
-	BL Enable7SegRight
-	BL SysTick_Wait1ms
-	MOV R0,#4
-	BL EnableLEDs
-	BL SysTick_Wait1ms
-	BL DisableAllLEDs
-	
-	BL wait_200ms
-	
-	MOV R0,#5
-	BL Enable7SegLeft
-	BL SysTick_Wait1ms
-	MOV R0,#5
-	BL Enable7SegRight
-	BL SysTick_Wait1ms
-	MOV R0,#5
-	BL EnableLEDs
-	BL SysTick_Wait1ms
-	BL DisableAllLEDs
-	
-	BL wait_200ms
-	
-	MOV R0,#6
-	BL Enable7SegLeft
-	BL SysTick_Wait1ms
-	MOV R0,#6
-	BL Enable7SegRight
-	BL SysTick_Wait1ms
-	MOV R0,#6
-	BL EnableLEDs
-	BL SysTick_Wait1ms
-	BL DisableAllLEDs
-	
-	BL wait_200ms
-	
-	MOV R0,#7
-	BL Enable7SegLeft
-	BL SysTick_Wait1ms
-	MOV R0,#7
-	BL Enable7SegRight
-	BL SysTick_Wait1ms
-	MOV R0,#7
-	BL EnableLEDs
-	BL SysTick_Wait1ms
-	BL DisableAllLEDs
-	
-	BL wait_200ms
-	
-	MOV R0,#8
-	BL Enable7SegLeft
-	BL SysTick_Wait1ms
-	MOV R0,#8
-	BL Enable7SegRight
-	BL SysTick_Wait1ms
-	MOV R0,#8
-	BL EnableLEDs
-	BL SysTick_Wait1ms
-	BL DisableAllLEDs
-	
-	BL wait_200ms
-	
-	MOV R0,#9
-	BL Enable7SegLeft
-	BL SysTick_Wait1ms
-	MOV R0,#9
-	BL Enable7SegRight
-	BL SysTick_Wait1ms
-	MOV R0,#0
-	BL EnableLEDs
-	BL SysTick_Wait1ms
-	BL DisableAllLEDs
-	
-	BL wait_200ms
-	
-	MOV R0,#0
-	BL Enable7SegLeft
-	BL SysTick_Wait1ms
-	MOV R0,#0
-	BL Enable7SegRight
-	BL SysTick_Wait1ms
-	MOV R0,#1
-	BL EnableLEDs
-	BL SysTick_Wait1ms
-	BL DisableAllLEDs
-	
+		
 	B MainLoop
 	
 ;--------------------------------------------------------------------------------
@@ -210,13 +141,32 @@ wait_200ms
 ; ****************************************
 ;Função que cria um atraso de 0,5s entre o aperto do pushButton e seu tratamento
 ; ****************************************
-	MOV R0, #200
+	MOV R0, #100
 	PUSH {LR}
 	BL SysTick_Wait1ms
     POP {LR}
 	
 	BX LR
+
+;--------------------------------------------------------------------------------
+InitializeVars
+; ****************************************
 	
+	LDR R1, =count
+	MOV R2, #0
+	STRB R2,[R1]
+	
+	LDR R1, =step
+	MOV R2, #1
+	STRB R2,[R1]
+	
+	LDR R1, =count_dir
+	MOV R2, #1
+	STRB R2,[R1]
+	
+	BX LR
+
+
 ; -------------------------------------------------------------------------------------------------------------------------
 ; Fim do Arquivo
 ; -------------------------------------------------------------------------------------------------------------------------	
